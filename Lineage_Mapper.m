@@ -731,8 +731,12 @@ push_button(h_tabpanel(4), [0.36 0.01 0.28 0.07], 'Explore Tracked Images', 'cen
 %--------------------------------------------------------------------------------------------------
 
     function start_tracking_Callback(varargin)
+    
+    	segmented_images_common_name = get(segmented_images_common_name_edit, 'string');
+	raw_images_common_name = get(raw_images_common_name_edit, 'string');
+	tracked_images_common_name = get(tracked_images_common_name_edit, 'string');
         
-        d = dir([segmented_images_path '*' segmented_images_common_name '*.tif']);
+        d = dir([segmented_images_path filesep '*' segmented_images_common_name '*.tif']);
         nb_frames = length(d);
         if nb_frames <= 0
             if ~batch_mode
@@ -853,7 +857,7 @@ push_button(h_tabpanel(4), [0.36 0.01 0.28 0.07], 'Explore Tracked Images', 'cen
                     rethrow(err);
                 end
             end
-            set(raw_images_path_edit, 'String', raw_images_path_loc);
+            set(raw_images_path_edit, 'String', raw_images_path);
         end
     end
 
@@ -874,7 +878,7 @@ push_button(h_tabpanel(4), [0.36 0.01 0.28 0.07], 'Explore Tracked Images', 'cen
                     rethrow(err);
                 end
             end
-            set(segmented_images_path_edit, 'String', segmented_images_path_loc);
+            set(segmented_images_path_edit, 'String', segmented_images_path);
         end
     end
 
@@ -895,7 +899,7 @@ push_button(h_tabpanel(4), [0.36 0.01 0.28 0.07], 'Explore Tracked Images', 'cen
                     rethrow(err);
                 end
             end
-            set(tracked_images_path_edit, 'String', tracked_images_path_loc);
+            set(tracked_images_path_edit, 'String', tracked_images_path);
         end
     end
 
